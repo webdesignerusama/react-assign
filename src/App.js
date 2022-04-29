@@ -29,7 +29,7 @@ function App() {
      <th scope="row">{item.id}</th>
      <td>{item.userId}</td>
      <td>{item.title}</td>
-     <td>true</td>
+     <td>{JSON.stringify(item.completed)}</td>
    </tr>
     )
      
