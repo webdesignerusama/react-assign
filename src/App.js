@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 // import Header from './components/Header'
 // import About from './components/About'
-// import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function App() {
    const [data, setdata] =useState([])
@@ -14,6 +14,7 @@ function App() {
 
     <div className="App text-center">
     <div className='container mt-5'>
+      <h1>Click on IDs</h1>
    <table className="table">
   <thead>
     <tr>
@@ -25,12 +26,16 @@ function App() {
   </thead>
   <tbody>
     { data.map(item=> 
+    
      <tr key={item.id}>
-     <th scope="row">{item.id}</th>
+      
+     <th scope="row"> <Link to={"/details/"+ item.id+'/'+item.userId+'/'+item.title+'/'+item.completed} style={{textDecoration: "none", color:'black'}}> {item.id}</Link></th>
      <td>{item.userId}</td>
      <td>{item.title}</td>
      <td>{JSON.stringify(item.completed)}</td>
+    
    </tr>
+    
     )
      
     }

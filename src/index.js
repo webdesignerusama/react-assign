@@ -4,13 +4,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import { BrowserRouter } from "react-router-dom";
+import Details from './components/Details';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+  } from "react-router-dom";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  
-    <App />
+  <>
+   
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="/details/:id/:userId/:title/:completed" element={<Details />} />
+      {/* <Route path="invoices" element={<Invoices />} /> */}
+    </Routes>
+  </BrowserRouter>
+  </>
 
 );
 
