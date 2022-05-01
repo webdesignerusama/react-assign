@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
 // import Header from './components/Header'
 // import About from './components/About'
-import { Link } from "react-router-dom";
-
 function App() {
    const [data, setdata] =useState([])
+   const router = useNavigate()
+   const changeRoute = route => {
+     router("/details/"+ route.id+'/'+route.userId+'/'+route.title+'/'+route.completed)
+   }
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/todos').then(res=>res.json()).then(data=> {return setdata(data) } )
     });
@@ -14,7 +17,7 @@ function App() {
 
     <div className="App text-center">
     <div className='container mt-5'>
-      <h1>Click on IDs</h1>
+     
    <table className="table">
   <thead>
     <tr>
@@ -27,9 +30,9 @@ function App() {
   <tbody>
     { data.map(item=> 
     
-     <tr key={item.id}>
+     <tr key={item.id} onClick={() =>changeRoute(item)} style={{textDecoration: "none", color:'black'}}>
       
-     <th scope="row"> <Link to={"/details/"+ item.id+'/'+item.userId+'/'+item.title+'/'+item.completed} style={{textDecoration: "none", color:'black'}}> {item.id}</Link></th>
+     <td scope="row"> {item.id} </td>
      <td>{item.userId}</td>
      <td>{item.title}</td>
      <td>{JSON.stringify(item.completed)}</td>
